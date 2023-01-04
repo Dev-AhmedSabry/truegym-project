@@ -11,25 +11,25 @@ CITY_CHOICES = (
 )
 
 AREA_CHOICES = (
-    ('Nasr City','Nasr City'),
-    ('Maadi','Maadi'),
-    ('Doki','Doki'),
-    ('Haram','Haram'),
-    ('Faisal','Faisal'),
-    ('6 October','6 October'),
+    ('NC','Nasr City'),
+    ('MA','Maadi'),
+    ('DK','Doki'),
+    ('HR','Haram'),
+    ('FS','Faisal'),
+    ('OC','6 October'),
 )
 
-USER_TYPE_CHOICES = (
-        (1, 'client'),
-        (2, 'gym'),
-        (3, 'partner'),
-        (4, 'staff'),
-        (5, 'admin'),
-    )
+# USER_TYPE_CHOICES = (
+#         (1, 'client'),
+#         (2, 'gym'),
+#         (3, 'partner'),
+#         (4, 'staff'),
+#         (5, 'admin'),
+#     )
 
 GENDER_CHOICES = (
-        ('Male','Male'),
-        ('Female','Female'),
+        ('M','Male'),
+        ('F','Female'),
     )
 
 # class Area(models.Model):
@@ -59,7 +59,6 @@ class Client(models.Model):
     
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_type = models.PositiveBigIntegerField(choices=USER_TYPE_CHOICES)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     full_name = models.CharField(max_length=100)
@@ -73,6 +72,7 @@ class Client(models.Model):
     mobile = models.CharField(max_length=11, blank=True, default='')
     avatar = models.ImageField(upload_to='client/', blank=True)
     created_at = models.DateTimeField(auto_now=True)
+    # user_type = models.PositiveBigIntegerField(choices=USER_TYPE_CHOICES)
     # is_email_verified = models.BooleanField(default=False)
     # is_mobile_verified = models.BooleanField(default=False)
     # is_active = models.BooleanField(default=False)
