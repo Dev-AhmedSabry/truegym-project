@@ -20,17 +20,17 @@ AREA_CHOICES = (
 )
 
 # USER_TYPE_CHOICES = (
-#         (1, 'client'),
-#         (2, 'gym'),
-#         (3, 'partner'),
-#         (4, 'staff'),
-#         (5, 'admin'),
-#     )
+#     (1, 'client'),
+#     (2, 'gym'),
+#     (3, 'partner'),
+#     (4, 'staff'),
+#     (5, 'admin'),
+# )
 
 GENDER_CHOICES = (
-        ('M','Male'),
-        ('F','Female'),
-    )
+    ('M','Male'),
+    ('F','Female'),
+)
 
 # class Area(models.Model):
 
