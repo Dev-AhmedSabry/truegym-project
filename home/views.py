@@ -4,6 +4,15 @@ from gym.models import Gym
 
 # Create your views here.
 
-def home_page(request):
-    return render(request, 'home/index.html')
-    pass
+def rec_gyms(request):
+
+    rec_gyms = Gym.objects.all()
+    context = {'rec_gyms': rec_gyms}
+    return render(request, 'home/index.html', context)
+
+def offerd_gyms(request):
+
+    offerd_gyms = Gym.objects.all()
+    context = {'offerd_gyms': offerd_gyms}
+    return render(request, 'home/index.html', context)
+

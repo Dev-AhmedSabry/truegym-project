@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
+    'django_filters',
+
     #my_apps
     'blog',
     'client',
@@ -47,6 +50,14 @@ INSTALLED_APPS = [
     'partner',
 
 ]
+
+# REST_FRAMEWORK = {
+    
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+#     ]
+# }
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

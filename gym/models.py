@@ -44,7 +44,6 @@ RATING_CHOICES =(
 
 class Gym(models.Model):
     
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     about = models.TextField(max_length=254, blank=True, default='')
     city = models.CharField(max_length=20, choices=CITY_CHOICES)

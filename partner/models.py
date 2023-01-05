@@ -5,9 +5,8 @@ from django.contrib.auth.models import User
 
 class Partner(models.Model):
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=70)
-    email = models.EmailField(max_length=100, unique=True)
+    email = models.EmailField(max_length=100, blank=True, unique=True, default='')
     address = models.CharField(max_length=100)
     phone = models.CharField(max_length=20)
     image = models.ImageField(upload_to='partner/', blank=True)
