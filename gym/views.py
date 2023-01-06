@@ -16,7 +16,6 @@ class GymListGeneric(generics.ListCreateAPIView):
     queryset = Gym.objects.all()
     serializer_class = GymSerializer
     filter_backends = [DjangoFilterBackend]
-
     filterset_fields = ['name','city','area']
 
 class GymOperationGeneric(generics.RetrieveUpdateDestroyAPIView):
@@ -93,16 +92,17 @@ class GymOperationGeneric(generics.RetrieveUpdateDestroyAPIView):
 #             status= status.HTTP_400_BAD_REQUEST
 #             )
 
-# def gym_search(request):
+@api_view(['GET'])
+def gym_search(request):
 
-#     if 'q' in request.GET:
-#         q = request.GET['q']
-#         multi = Q(Q(name__icontains=q) | Q(city__icontains=q) | Q(area__icontains=q))
-#         gym_search = Gym.objects.filter(multi)
-#     else:
-#         gym_search = Gym.objects.all()
-#     context = {'gyms': gym_search}
-#     return render(request, 'gym/search_results.html', context)
+    if 'q' in request.GET:
+        q = request.GET['q']
+        multi = Q(Q(name__icontains=q) | Q(city__icontains=q) | Q(area__icontains=q))
+        gym_search = Gym.objects.filter(multi)
+    else:
+        gym_search = Gym.objects.all()
+    context = {'gyms': gym_search}
+    return render(request, 'gym/search_results.html', context)
 
 # def gym_searchform(request):
 #     form = GymSearchForm(request.POST or None)
