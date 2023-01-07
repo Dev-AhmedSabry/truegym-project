@@ -6,40 +6,40 @@ from django.contrib.auth.models import User
 
 
 CITY_CHOICES = (
-    ('Cairo','Cairo'),
-    ('Giza','Giza'),
+    ('cairo','Cairo'),
+    ('giza','Giza'),
 )
 
 AREA_CHOICES = (
-    ('NC','Nasr City'),
-    ('MA','Maadi'),
-    ('DK','Doki'),
-    ('HR','Haram'),
-    ('FS','Faisal'),
-    ('OC','6 October'),
+    ('nasr-city','Nasr City'),
+    ('maadi','Maadi'),
+    ('doki','Doki'),
+    ('haram','Haram'),
+    ('faisal','Faisal'),
+    ('6-october','6 October'),
 )
 
 SUPSCRIPTION_TYPE = (
-    ('D','Daily'),
-    ('W','Weekly'),
-    ('M','Monthly'),
-    ('3 M','3 Months'),
-    ('6 M','6 Months'),
-    ('Y','Yearly'),
+    ('daily','Daily'),
+    ('weekly','Weekly'),
+    ('monthly','Monthly'),
+    ('3-months','3 Months'),
+    ('6-months','6 Months'),
+    ('yearly','Yearly'),
 )
 
 GENDER_CHOICES = (
-    ('B','Both'),
-    ('M','Male'),
-    ('F','Female'),
+    ('both','Both'),
+    ('male','Male'),
+    ('female','Female'),
 )
 
 RATING_CHOICES =(
-    (1, 1),
-    (2, 2),
-    (3, 3),
-    (4, 4),
-    (5, 5),
+    (1, '1 Star'),
+    (2, '2 Stars'),
+    (3, '3 Stars'),
+    (4, '4 Stars'),
+    (5, '5 Stars'),
 )
 
 class Gym(models.Model):
@@ -55,7 +55,7 @@ class Gym(models.Model):
     image = models.ImageField(upload_to='gym/', blank=True, default='')
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    # review = models.CharField(max_length=2, choices=RATING_CHOICES, null=True)
+    review = models.CharField(max_length=2, choices=RATING_CHOICES, null=True)
     # is_email_verified = models.BooleanField(default=False)
     # is_phone_verified = models.BooleanField(default=False)
     # is_active = models.BooleanField(default=False)

@@ -10,6 +10,7 @@ urlpatterns = [
     # path('api/fbvgympage/<int:id>', views.fbv_gym_page),
     # path('api/cbvgymlist/', views.GymList.as_view()),
     # path('api/cbvmixgymlist/', views.GymListMixins.as_view()),
-    path('api/', views.GymListGeneric.as_view()),
-    path('api/gym_<int:pk>', views.GymOperationGeneric.as_view()),
+    path('apis/', views.GymListGeneric.as_view()),
+    path('apis/gym-<int:pk>', views.GymOperationGeneric.as_view()),
+    
 ]
