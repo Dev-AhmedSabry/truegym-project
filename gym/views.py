@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from django.db.models import Q
 from django.http.response import JsonResponse
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import generics, status, filters, mixins, viewsets
 from rest_framework.views import APIView
-from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import generics, status, filters, mixins, viewsets
+
 from .models import Gym
 from .serializers import GymSerializer
-# from .forms import GymSearchForm
 
 # Create your views here.
 
@@ -16,12 +16,23 @@ class GymListGeneric(generics.ListCreateAPIView):
     queryset = Gym.objects.all()
     serializer_class = GymSerializer
     filter_backends = [DjangoFilterBackend]
-
     filterset_fields = ['name','city','area']
 
 class GymOperationGeneric(generics.RetrieveUpdateDestroyAPIView):
     queryset = Gym.objects.all()
     serializer_class = GymSerializer
+
+# @api_view(['GET'])
+# def gym_search(request):
+
+#     if 'q' in request.GET:
+#         q = request.GET['q']
+#         multi = Q(Q(name__icontains=q) | Q(city__icontains=q) | Q(area__icontains=q))
+#         gym_search = Gym.objects.filter(multi)
+#     else:
+#         gym_search = Gym.objects.all()
+#     context = {'gyms': gym_search}
+#     return render(request, 'gym/search_results.html', context)
 
 # class GymListMixins(
 #     mixins.ListModelMixin,
@@ -37,6 +48,23 @@ class GymOperationGeneric(generics.RetrieveUpdateDestroyAPIView):
 #     def post(self, request):
 #         return self.create(request)
 
+# class GymList(APIView):
+#     def get(self, request):
+#         gyms = Gym.objects.all()
+#         serializer = GymSerializer(gyms, many=True)
+#         return Response(serializer.data)
+#     def post(self, request):
+#         serializer = GymSerializer(data= request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(
+#                 serializer.data,
+#                 status= status.HTTP_201_CREATED
+#                 )
+#         return Response(
+#             serializer.data,
+#             status= status.HTTP_400_BAD_REQUEST
+#             )
 
 # @api_view(['GET','POST'])
 # def fbv_list(request):
@@ -74,40 +102,3 @@ class GymOperationGeneric(generics.RetrieveUpdateDestroyAPIView):
 #     if request.method == 'DELETE':
 #         gym.delete()
 #         return Response(status= status.HTTP_204_NO_CONTENT)
-
-# class GymList(APIView):
-#     def get(self, request):
-#         gyms = Gym.objects.all()
-#         serializer = GymSerializer(gyms, many=True)
-#         return Response(serializer.data)
-#     def post(self, request):
-#         serializer = GymSerializer(data= request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(
-#                 serializer.data,
-#                 status= status.HTTP_201_CREATED
-#                 )
-#         return Response(
-#             serializer.data,
-#             status= status.HTTP_400_BAD_REQUEST
-#             )
-
-# def gym_search(request):
-
-#     if 'q' in request.GET:
-#         q = request.GET['q']
-#         multi = Q(Q(name__icontains=q) | Q(city__icontains=q) | Q(area__icontains=q))
-#         gym_search = Gym.objects.filter(multi)
-#     else:
-#         gym_search = Gym.objects.all()
-#     context = {'gyms': gym_search}
-#     return render(request, 'gym/search_results.html', context)
-
-# def gym_searchform(request):
-#     form = GymSearchForm(request.POST or None)
-
-#     if request.method == 'POST':
-#         queryset = Gym.objects.filter(name__icontaint=form['name'].value(),
-#         city__icontaint=form['city'].value(),
-#         area__icontaint=form['area'].value())
